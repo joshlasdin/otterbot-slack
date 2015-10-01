@@ -9,14 +9,14 @@ This app uses Ruby 2.1.3
 
 ## How To Run It Locally
 
-# clone it
-git clone git@github.com:joshlasdin/otterbot-slack.git
+### clone it
+```git clone git@github.com:joshlasdin/otterbot-slack.git```
 
-# own it
-cd otterbot-slack
+### own it
+``` cd otterbot-slack ```
 
-# install the gems
-bundle
+### install the gems
+``` bundle ```
 
-# run it
-ruby app.rb
+### run it
+``` ruby app.rb ```
