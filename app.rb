@@ -2,6 +2,8 @@
 require "rubygems"
 require "sinatra"
 require "json"
+require "./lib/slack"
+require "./lib/google_image_search"
 
 # ensures foreman doesn't buffer console output
 $stdout.sync = true
@@ -29,5 +31,20 @@ post "/" do
   text = body["text"].to_s.strip
   username = body["user_name"]
 
-  puts "#{command} #{text} from #{username}"
+  case command
+  when "/pic"
+    slack = Slack.new
+    image = GoogleImageSearch.search text
+    message = "#{command} #{text} (#{username})"
+    if image
+      message << " " << image
+    else
+      message << " 404. otter has no such things."
+    end
+    slack.post_message message
+  else
+    puts "Unknown command: #{command}. Text: #{text}"
+  end
+
+  nil
 end
