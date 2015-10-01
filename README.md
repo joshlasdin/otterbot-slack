@@ -19,4 +19,7 @@ This app uses Ruby 2.1.3
 ``` bundle ```
 
 ### run it
-``` ruby app.rb ```
+``` foreman start ```
+
+### see it
+``` open http://localhost:5000 ```

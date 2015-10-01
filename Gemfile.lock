@@ -1,12 +1,27 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    celluloid (0.16.0)
+      timers (~> 4.0.0)
     daemons (1.2.3)
     eventmachine (1.0.8)
+    ffi (1.9.10)
+    foreman (0.78.0)
+      thor (~> 0.19.1)
+    hitimes (1.2.3)
+    listen (2.10.1)
+      celluloid (~> 0.16.0)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
     rake (10.4.2)
+    rb-fsevent (0.9.6)
+    rb-inotify (0.9.5)
+      ffi (>= 0.5.0)
+    rerun (0.10.0)
+      listen (~> 2.7, >= 2.7.3)
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -15,13 +30,19 @@ GEM
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
       rack (~> 1.0)
+    thor (0.19.1)
     tilt (2.0.1)
+    timers (4.0.4)
+      hitimes
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  foreman
   rake
+  rb-fsevent
+  rerun
   sinatra
   thin
 
