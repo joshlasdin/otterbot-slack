@@ -6,6 +6,7 @@ gem 'rake'
 gem 'sinatra'
 gem 'thin'
 gem 'foreman'
+gem 'httparty'
 
 group :development do
   gem 'rb-fsevent'
