@@ -18,6 +18,9 @@ This app uses Ruby 2.1.3
 ### install the gems
 ``` bundle ```
 
+### setup .env
+You'll need to set the WEBHOOK_URL and CHANNEL variables in the .env. These come from Slack in the Incoming Webhooks Integration page. CHANNEL should start with a #. See .env.example for how the file should look.
+
 ### run it
 ``` foreman start ```
 
