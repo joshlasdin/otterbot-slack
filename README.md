@@ -23,3 +23,10 @@ This app uses Ruby 2.1.3
 
 ### see it
 ``` open http://localhost:5000 ```
+
+## Notes
+
+### Make a local request like how Slack would
+```
+curl -s -X POST -H "Content-Type: application/json" -d '{"command": "/pic", "user_name": "sevengenres", "text": "kittens"}' http://localhost:5000/
+```
