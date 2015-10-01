@@ -3,6 +3,6 @@ require "rubygems"
 require "sinatra"
 
 get "/" do
-  "otter!"
+  send_file 'public/index.html'
 end
 
