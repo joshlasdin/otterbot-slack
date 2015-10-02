@@ -12,24 +12,17 @@ get "/" do
   send_file 'public/index.html'
 end
 
-"""
-Data Slack POST's:
-token=gIkuvaNzQIHg97ATvDxqgjtO
-team_id=T0001
-team_domain=example
-channel_id=C2147483705
-channel_name=test
-user_id=U2147483697
-user_name=Steve
-command=/weather
-text=94070
-"""
 post "/" do
-  body = JSON.parse(request.body.read)
+  params = parse_slack_data(request.body.read)
 
-  command = body["command"].to_s.strip.downcase
-  text = body["text"].to_s.strip
-  username = body["user_name"]
+  if params[:token] != ENV['TOKEN']
+    puts "Invalid request token: #{params.inspect}"
+    return nil
+  end
+
+  command = params[:command].strip.downcase
+  text = params[:text].strip
+  username = params[:user_name]
 
   case command
   when "/pic"
@@ -47,4 +40,24 @@ post "/" do
   end
 
   nil
+end
+
+"""
+Data Slack POST's:
+token=gIkuvaNzQIHg97ATvDxqgjtO
+team_id=T0001
+team_domain=example
+channel_id=C2147483705
+channel_name=test
+user_id=U2147483697
+user_name=Steve
+command=/weather
+text=94070
+"""
+def parse_slack_data body
+  body.to_s.split("\n").each_with_object({}) do |line, h|
+    tokens = line.split("=")
+    next unless tokens.length == 2
+    h[tokens[0].to_sym] = tokens[1]
+  end
 end

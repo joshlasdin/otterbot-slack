@@ -31,5 +31,5 @@ You'll need to set the WEBHOOK_URL and CHANNEL variables in the .env. These come
 
 ### Make a local request like how Slack would
 ```
-curl -s -X POST -H "Content-Type: application/json" -d '{"command": "/pic", "user_name": "sevengenres", "text": "kittens"}' http://localhost:5000/
+curl -X POST --data-binary @public/example_request.txt http://localhost:5000/
 ```
