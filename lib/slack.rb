@@ -22,7 +22,7 @@ class Slack
       icon_emoji: ICON_EMOJI
     }
     response = HTTParty.post(@webhook_url, body: body.to_json)
-    if response.code == "200"
+    if response.code == 200
       true
     else
       puts "Error posting to slack: #{response}"

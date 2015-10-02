@@ -14,7 +14,8 @@ class GoogleImageSearch
       while images.length > 0
         image = images.pop
 
-        # make sure the image is still live before we post it
+        # make sure the image is live before we post it
+        # TODO: Some sensible file-size and dimension checking would be nice
         image_response = HTTParty.get(image)
         if image_response.code == 200 && image_response.content_type.include?("image/")
           puts "Found image for '#{query}': #{image}"
