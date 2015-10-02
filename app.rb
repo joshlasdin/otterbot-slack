@@ -2,6 +2,7 @@
 require "rubygems"
 require "sinatra"
 require "json"
+require "cgi"
 require "./lib/slack"
 require "./lib/google_image_search"
 
@@ -58,6 +59,6 @@ def parse_slack_data body
   body.to_s.split("&").each_with_object({}) do |line, h|
     tokens = line.split("=")
     next unless tokens.length == 2
-    h[tokens[0].to_sym] = tokens[1]
+    h[tokens[0].to_sym] = CGI.unescape(tokens[1])
   end
 end
