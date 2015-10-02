@@ -16,7 +16,7 @@ end
 post "/" do
   params = parse_slack_data(request.body.read)
 
-  if params[:token] != ENV['TOKEN']
+  if ENV['TOKENS'].split(",").include?(params[:token])
     puts "Invalid request token: #{params.inspect}"
     return nil
   end
