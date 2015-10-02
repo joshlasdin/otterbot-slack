@@ -5,6 +5,7 @@ require "json"
 require "cgi"
 require "./lib/slack"
 require "./lib/google_image_search"
+require "./lib/urban_dictionary"
 
 # ensures foreman doesn't buffer console output
 $stdout.sync = true
