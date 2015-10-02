@@ -41,7 +41,7 @@ post "/" do
     slack = Slack.new
     definition = UrbanDictionary.search text
     if definition
-      slack.post_message message
+      slack.post_message definition
     end
   else
     puts "Unknown command: #{command}. #{params.inspect}"
