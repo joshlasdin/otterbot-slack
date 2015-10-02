@@ -36,6 +36,12 @@ post "/" do
       message << " 404. otter has no such things."
     end
     slack.post_message message
+  when "/ud"
+    slack = Slack.new
+    definition = UrbanDictionary.search text
+    if definition
+      slack.post_message message
+    end
   else
     puts "Unknown command: #{command}. #{params.inspect}"
   end
