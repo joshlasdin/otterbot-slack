@@ -55,6 +55,7 @@ command=/weather
 text=94070
 """
 def parse_slack_data body
+  puts body.inspect
   body.to_s.split("\n").each_with_object({}) do |line, h|
     tokens = line.split("=")
     next unless tokens.length == 2
