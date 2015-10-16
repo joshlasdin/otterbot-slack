@@ -6,6 +6,7 @@ require "cgi"
 require "./lib/slack"
 require "./lib/google_image_search"
 require "./lib/urban_dictionary"
+require "./lib/decider"
 
 # ensures foreman doesn't buffer console output
 $stdout.sync = true
@@ -42,6 +43,11 @@ post "/" do
     definition = UrbanDictionary.search text
     if definition
       slack.post_message definition
+    end
+  when "/shouldi"
+    decision = Decider.decide text
+    if decision
+      slack.post_message "#{command} #{text}\n otter has decided. #{username} #{decision}."
     end
   else
     puts "Unknown command: #{command}. #{params.inspect}"
