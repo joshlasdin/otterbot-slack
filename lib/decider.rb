@@ -3,7 +3,7 @@ class Decider
     query = query.to_s.strip.gsub("?", "")
     return nil if query.empty?
 
-    options = query.split(" or ")
+    options = query.split(" or ").map { |o| o.gsub(/should i/i, "").strip }
     if options.one?
       # e.g. /shouldi go home?
       decision = ["you should", "you should NOT"].shuffle.shift
