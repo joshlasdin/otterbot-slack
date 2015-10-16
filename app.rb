@@ -8,6 +8,7 @@ require "./lib/google_image_search"
 require "./lib/urban_dictionary"
 require "./lib/decider"
 require "./lib/magic_8_ball"
+require "./lib/magic_gif_ball"
 
 # ensures foreman doesn't buffer console output
 $stdout.sync = true
@@ -53,6 +54,9 @@ post "/" do
   when "/8ball"
     decision = Magic8Ball.shake
     slack.post_message "#{command} #{text}\n#{username} Magic 8 Ball says #{decision}."
+  when "/gifball"
+    decision = MagicGifBall.shake
+    slack.post_message "#{command} #{text}\n#{username} Magic Gif Ball says #{decision}."
   else
     puts "Unknown command: #{command}. #{params.inspect}"
   end
