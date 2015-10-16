@@ -55,7 +55,7 @@ post "/" do
     slack.post_message "#{command} #{text}\n#{username} Magic 8 Ball says: #{decision}"
   when "/gifball"
     decision = MagicGifBall.shake
-    slack.post_message "#{command} #{text}\n#{username} Magic Gif Ball says: #{decision}."
+    slack.post_message "#{command} #{text}\n#{username} Magic Gif Ball says: #{decision}"
   else
     puts "Unknown command: #{command}. #{params.inspect}"
   end
