@@ -48,14 +48,14 @@ post "/" do
   when "/shouldi"
     decision = Decider.decide text
     if decision
-      slack.post_message "#{command} #{text}\n otter has decided. #{username} #{decision}."
+      slack.post_message "#{command} #{text}\n #{username} otter says: #{username} #{decision}"
     end
   when "/8ball"
     decision = Magic8Ball.shake
-    slack.post_message "#{command} #{text}\n#{username} Magic 8 Ball says #{decision}."
+    slack.post_message "#{command} #{text}\n#{username} Magic 8 Ball says: #{decision}"
   when "/gifball"
     decision = MagicGifBall.shake
-    slack.post_message "#{command} #{text}\n#{username} Magic Gif Ball says #{decision}."
+    slack.post_message "#{command} #{text}\n#{username} Magic Gif Ball says: #{decision}."
   else
     puts "Unknown command: #{command}. #{params.inspect}"
   end
