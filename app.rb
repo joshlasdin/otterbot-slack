@@ -48,7 +48,7 @@ post "/" do
   when "/shouldi"
     decision = Decider.decide text
     if decision
-      slack.post_message "#{command} #{text}\n #{username} otter says: #{username} #{decision}"
+      slack.post_message "#{command} #{text}\n #{username} otter says: #{decision}"
     end
   when "/8ball"
     decision = Magic8Ball.shake
