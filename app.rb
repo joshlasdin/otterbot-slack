@@ -29,9 +29,9 @@ post "/" do
   text = params[:text].strip
   username = params[:user_name]
 
+  slack = Slack.new
   case command
   when "/pic"
-    slack = Slack.new
     image = GoogleImageSearch.search text
     message = "#{command} #{text} (#{username})"
     if image
@@ -41,7 +41,6 @@ post "/" do
     end
     slack.post_message message
   when "/ud"
-    slack = Slack.new
     definition = UrbanDictionary.search text
     if definition
       slack.post_message definition
