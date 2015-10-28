@@ -25,8 +25,8 @@ post "/" do
     return nil
   end
 
-  command = params[:command].strip.downcase
-  text = params[:text].strip
+  command = params[:command].to_s.strip.downcase
+  text = params[:text].to_s.strip
   username = params[:user_name]
 
   slack = Slack.new
