@@ -2,14 +2,22 @@ require 'uri'
 require 'httparty'
 
 class GoogleImageSearch
-  # rsz = result size
-  # safe = should safe search be enabled
-  BASE_URL = "http://ajax.googleapis.com/ajax/services/search/images?v=1.0&rsz=5&safe=active&q="
+  BASE_URL = "https://www.googleapis.com/customsearch/v1"
 
   def self.search query
-    response = HTTParty.get(BASE_URL + URI.encode(query))
+    @google_api_key = ENV['GOOGLE_API_KEY'].to_s
+
+    raise ArgumentError.new("GOOGLE_API_KEY must be set in your ENV to search google") if @google_api_key.empty?
+
+    options = {
+      q: query,
+      searchType: "image",
+      cx: "009417781679318038892:yufe6eiwyeu", # a custom search engine id the searches for images across the web
+      key: @google_api_key
+    }
+    response = HTTParty.get(BASE_URL, query: options)
     if response.code == 200
-      images = JSON.parse(response.body)["responseData"]["results"].map { |i| i["url"] }
+      images = JSON.parse(response.body)["items"].map { |i| i["link"] }[0...5]
       images.shuffle!
       while images.length > 0
         image = images.pop
