@@ -59,7 +59,7 @@ post "/" do
   when "/rfi"
     # this is "roll for initiative" aka a random number generator for a game
     result = rand(1..20)
-    slack.post_message "#{command}\n#{result}"
+    slack.post_message "#{username} #{command}\n#{result}"
   else
     puts "Unknown command: #{command}. #{params.inspect}"
   end
