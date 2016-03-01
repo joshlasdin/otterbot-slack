@@ -12,12 +12,12 @@ class Slack
     raise ArgumentError.new("CHANNEL must be set in your ENV to post to slack") if @channel.empty?
   end
 
-  def post_message message
+  def post_message message, channel=nil
     return false if message.to_s.strip.empty?
 
     body = {
       text: message,
-      channel: @channel,
+      channel: channel || @channel,
       username: USERNAME,
       icon_emoji: ICON_EMOJI
     }

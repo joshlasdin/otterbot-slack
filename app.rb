@@ -28,6 +28,7 @@ post "/" do
   command = params[:command].to_s.strip.downcase
   text = params[:text].to_s.strip
   username = params[:user_name]
+  channel = "#" + params[:channel_name]
 
   slack = Slack.new
   case command
@@ -39,7 +40,7 @@ post "/" do
     else
       message << " 404. otter has no such things."
     end
-    slack.post_message message
+    slack.post_message message, channel
   when "/ud"
     definition = UrbanDictionary.search text
     if definition
