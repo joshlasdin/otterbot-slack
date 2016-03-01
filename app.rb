@@ -29,6 +29,8 @@ post "/" do
   text = params[:text].to_s.strip
   username = params[:user_name]
   channel = "#" + params[:channel_name]
+  puts params
+  puts channel
 
   slack = Slack.new
   case command
