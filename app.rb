@@ -64,7 +64,7 @@ post "/" do
   when "/cuteplz"
     cuteness = CutePlz.cuteness text
     if cuteness
-      slack.post_message "#{command} #{text}\n (#{username}): #{cuteness}"
+      slack.post_message "#{command} #{text} (#{username}): #{cuteness}"
     end
   else
     puts "Unknown command: #{command}. #{params.inspect}"
