@@ -9,6 +9,7 @@ require "./lib/urban_dictionary"
 require "./lib/decider"
 require "./lib/magic_8_ball"
 require "./lib/magic_gif_ball"
+require "./lib/cute_plz"
 
 # ensures foreman doesn't buffer console output
 $stdout.sync = true
@@ -60,6 +61,11 @@ post "/" do
     # this is "roll for initiative" aka a random number generator for a game
     result = rand(1..20)
     slack.post_message "#{username} #{command}\n#{result}"
+  when "/cuteplz"
+    cuteness = CutePlz.cuteness text
+    if cuteness
+      slack.post_message "#{command} #{text}\n (#{username}): #{cuteness}"
+    end
   else
     puts "Unknown command: #{command}. #{params.inspect}"
   end
