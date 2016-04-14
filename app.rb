@@ -57,6 +57,10 @@ post "/" do
   when "/gifball"
     decision = MagicGifBall.shake
     slack.post_message "#{command} #{text}\n#{username} Magic Gif Ball says: #{decision}"
+  when  "/lastfmroll"
+    # this is "top albums of all time from fred.fm"
+    result = rand(1..700)
+    slack.post_message "#{username} #{command}\n#{result}"
   when "/rfi"
     # this is "roll for initiative" aka a random number generator for a game
     result = rand(1..20)
