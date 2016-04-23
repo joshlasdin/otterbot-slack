@@ -36,9 +36,7 @@ class Slack
 
     body = {
       text: message,
-      response_type: "in_channel",
-      username: USERNAME,
-      icon_emoji: ICON_EMOJI
+      response_type: "in_channel"
     }
     response = HTTParty.post(response_url, body: body.to_json)
     if response.code == 200
