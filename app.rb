@@ -26,8 +26,6 @@ post "/" do
     return nil
   end
 
-  puts params
-
   command = params[:command].to_s.strip.downcase
   text = params[:text].to_s.strip
   username = params[:user_name]
@@ -39,47 +37,52 @@ post "/" do
   case command
   when "/pic"
     image = GoogleImageSearch.search text
-    message = "#{command} #{text} (#{username})"
     if image
-      message << " " << image
+      message = image
     else
-      message << " 404. otter has no such things."
+      message = "404. otter has no such things."
     end
   when "/ud"
-    message = UrbanDictionary.search text
+    definition = UrbanDictionary.search text
+    if definition
+      message = definition
+    else
+      message = "otter doesn't play that #{text} game"
+    end
   when "/shouldi"
     decision = Decider.decide text
     if decision
-      message = "#{command} #{text}\n #{username} otter says: #{decision}"
+      message = "otter has decided: #{decision}"
     end
   when "/8ball"
     decision = Magic8Ball.shake
-    message = "#{command} #{text}\n#{username} Magic 8 Ball says: #{decision}"
+    message = "Magic 8 Ball says: #{decision}"
   when "/gifball"
     decision = MagicGifBall.shake
-    message = "#{command} #{text}\n#{username} Magic Gif Ball says: #{decision}"
+    message = "Magic Gif Ball says: #{decision}"
   when  "/lastfmroll"
     # this is "top albums of all time from fred.fm"
-    result = rand(1..700)
-    message = "#{username} #{command}\n#{result}"
+    message = rand(1..700)
   when "/rfi"
     # this is "roll for initiative" aka a random number generator for a game
-    result = rand(1..20)
-    message = "#{username} #{command}\n#{result}"
+    message = rand(1..20)
   when "/cuteplz"
-    cuteness = CutePlz.cuteness text
-    if cuteness
-      message = "#{command} #{text} (#{username}): #{cuteness}"
-    end
+    message = CutePlz.cuteness text
   else
     message = "Unknown command: #{command}. #{params.inspect}"
   end
 
   if message && message.length > 0
-    slack.reply response_url, message
+    response_message = formatted_response username, command, text, message
+    slack.reply response_url, response_message
   end
 
   nil
+end
+
+def formatted_response username, command, text, message
+  text = " #{text}" if text && text.length > 0
+  "#{username} #{command}#{text}\n#{message}"
 end
 
 """
