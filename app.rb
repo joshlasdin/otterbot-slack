@@ -26,9 +26,14 @@ post "/" do
     return nil
   end
 
+  puts params
+
   command = params[:command].to_s.strip.downcase
   text = params[:text].to_s.strip
   username = params[:user_name]
+  response_url = params[:response_url]
+
+  message = nil
 
   slack = Slack.new
   case command
@@ -40,38 +45,38 @@ post "/" do
     else
       message << " 404. otter has no such things."
     end
-    slack.post_message message
   when "/ud"
-    definition = UrbanDictionary.search text
-    if definition
-      slack.post_message definition
-    end
+    message = UrbanDictionary.search text
   when "/shouldi"
     decision = Decider.decide text
     if decision
-      slack.post_message "#{command} #{text}\n #{username} otter says: #{decision}"
+      message = "#{command} #{text}\n #{username} otter says: #{decision}"
     end
   when "/8ball"
     decision = Magic8Ball.shake
-    slack.post_message "#{command} #{text}\n#{username} Magic 8 Ball says: #{decision}"
+    message = "#{command} #{text}\n#{username} Magic 8 Ball says: #{decision}"
   when "/gifball"
     decision = MagicGifBall.shake
-    slack.post_message "#{command} #{text}\n#{username} Magic Gif Ball says: #{decision}"
+    message = "#{command} #{text}\n#{username} Magic Gif Ball says: #{decision}"
   when  "/lastfmroll"
     # this is "top albums of all time from fred.fm"
     result = rand(1..700)
-    slack.post_message "#{username} #{command}\n#{result}"
+    message = "#{username} #{command}\n#{result}"
   when "/rfi"
     # this is "roll for initiative" aka a random number generator for a game
     result = rand(1..20)
-    slack.post_message "#{username} #{command}\n#{result}"
+    message = "#{username} #{command}\n#{result}"
   when "/cuteplz"
     cuteness = CutePlz.cuteness text
     if cuteness
-      slack.post_message "#{command} #{text} (#{username}): #{cuteness}"
+      message = "#{command} #{text} (#{username}): #{cuteness}"
     end
   else
-    puts "Unknown command: #{command}. #{params.inspect}"
+    message = "Unknown command: #{command}. #{params.inspect}"
+  end
+
+  if message && message.length > 0
+    slack.reply response_url, message
   end
 
   nil

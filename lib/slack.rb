@@ -29,4 +29,23 @@ class Slack
       false
     end
   end
+
+  def reply response_url, message
+    return false if response_url.to_s.strip.empty?
+    return false if message.to_s.strip.empty?
+
+    body = {
+      text: message,
+      response_type: "in_channel",
+      username: USERNAME,
+      icon_emoji: ICON_EMOJI
+    }
+    response = HTTParty.post(response_url, body: body.to_json)
+    if response.code == 200
+      true
+    else
+      puts "Error posting to slack: #{response}"
+      false
+    end
+  end
 end
