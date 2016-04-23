@@ -62,10 +62,10 @@ post "/" do
     message = "Magic Gif Ball says: #{decision}"
   when  "/lastfmroll"
     # this is "top albums of all time from fred.fm"
-    message = rand(1..700)
+    message = rand(1..700).to_s
   when "/rfi"
     # this is "roll for initiative" aka a random number generator for a game
-    message = rand(1..20)
+    message = rand(1..20).to_s
   when "/cuteplz"
     message = CutePlz.cuteness text
   else
