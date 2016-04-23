@@ -8,15 +8,10 @@ class UrbanDictionary
     response = HTTParty.get(BASE_URL + URI.encode(query))
     if response.code == 200
       definition = JSON.parse(response.body)["list"].shift
-      if definition
-        return "/ud #{query} \nDEFINITION: #{definition['definition']}"
-      else
-        return "otter don't play that '#{query}' game"
-      end
+      definition['definition']
     else
       puts "Invalid response from Urban Dictionary: #{response}"
+      nil
     end
-
-    nil
   end
 end
