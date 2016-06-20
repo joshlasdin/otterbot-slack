@@ -42,7 +42,7 @@ class Slack
     if response.code == 200
       true
     else
-      puts "Error posting to slack: #{response}"
+      puts "Error posting to slack: (#{response.code}) #{response.response.body}"
       false
     end
   end
