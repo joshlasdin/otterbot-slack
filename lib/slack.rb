@@ -38,7 +38,7 @@ class Slack
       text: message,
       response_type: "in_channel"
     }
-    puts response_url, body.to_json
+
     response = HTTParty.post(response_url, body: body.to_json)
     if response.code == 200
       true

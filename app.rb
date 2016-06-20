@@ -38,7 +38,8 @@ post "/" do
   when "/pic"
     image = GoogleImageSearch.search text
     if image
-      message = CGI.escape_html(image)
+      # Slack says urls with equals signs are 'invalid_payload', so hack around that
+      message = image.gsub("=", "%3D")
     else
       message = "404. otter has no such things."
     end
