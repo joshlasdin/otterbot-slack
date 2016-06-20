@@ -38,7 +38,7 @@ post "/" do
   when "/pic"
     image = GoogleImageSearch.search text
     if image
-      message = image
+      message = CGI.escape_html(image)
     else
       message = "404. otter has no such things."
     end
