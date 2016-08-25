@@ -67,6 +67,8 @@ post "/" do
   when "/rfi"
     # this is "roll for initiative" aka a random number generator for a game
     message = rand(1..20).to_s
+  when "/coinflip"
+    message = ["HEADS!", "TAILS!"].sample
   when "/cuteplz"
     message = CutePlz.cuteness text
   else
