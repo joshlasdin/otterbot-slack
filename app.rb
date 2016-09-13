@@ -63,7 +63,7 @@ post "/" do
     message = "Magic Gif Ball says: #{decision}"
   when  "/lastfmroll"
     # this is "top albums of all time from fred.fm"
-    number = rand(1..700).to_s
+    number = rand(1..700)
     page = (number / 50).to_i
     links = [
       "http://www.last.fm/user/jayteemo/library/albums?page=#{page}",
