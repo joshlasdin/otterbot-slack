@@ -70,7 +70,8 @@ post "/" do
       album = LastFm.top_album username, number
       if album
         url = Spotify.album_search album['artist']['name'], album['name']
-        "#{username}: #{album['artist']['name']} - #{album['name']} #{url}".strip
+        link = url ? " <#{url}|Spotify Link>" : ""
+        "#{username}: #{album['artist']['name']} - #{album['name']}#{link}"
       end
     end
     message = "#{number}!\n" + albums.select { |a| a && !a.empty? }.join("\n")
