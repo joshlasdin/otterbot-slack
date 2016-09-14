@@ -76,7 +76,8 @@ post "/" do
       end
     end
     message = "#{number}!\n" + albums.select { |a| a && !a.empty? }.join("\n")
-    reply_options[:unfurl_links] = "false"
+    reply_options[:unfurl_links] = false
+    reply_options[:unfurl_media] = false
   when "/rfi"
     # this is "roll for initiative" aka a random number generator for a game
     message = rand(1..20).to_s
