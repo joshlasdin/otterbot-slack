@@ -32,6 +32,7 @@ post "/" do
   text = params[:text].to_s.strip
   username = params[:user_name]
   response_url = params[:response_url]
+  reply_options = {}
 
   message = nil
 
@@ -75,6 +76,7 @@ post "/" do
       end
     end
     message = "#{number}!\n" + albums.select { |a| a && !a.empty? }.join("\n")
+    reply_options[:unfurl_links] = "false"
   when "/rfi"
     # this is "roll for initiative" aka a random number generator for a game
     message = rand(1..20).to_s
@@ -88,7 +90,7 @@ post "/" do
 
   if message && message.length > 0
     response_message = formatted_response username, command, text, message
-    slack.reply response_url, response_message
+    slack.reply response_url, response_message, reply_options
   end
 
   nil

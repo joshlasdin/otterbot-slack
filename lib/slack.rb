@@ -30,14 +30,14 @@ class Slack
     end
   end
 
-  def reply response_url, message
+  def reply response_url, message, options={}
     return false if response_url.to_s.strip.empty?
     return false if message.to_s.strip.empty?
 
     body = {
       text: message,
       response_type: "in_channel"
-    }
+    }.merge(options)
 
     response = HTTParty.post(response_url, body: body.to_json)
     if response.code == 200
