@@ -10,6 +10,7 @@ require "./lib/decider"
 require "./lib/magic_8_ball"
 require "./lib/magic_gif_ball"
 require "./lib/cute_plz"
+require "./lib/last_fm"
 
 # ensures foreman doesn't buffer console output
 $stdout.sync = true
@@ -64,14 +65,13 @@ post "/" do
   when  "/lastfmroll"
     # this is "top albums of all time from fred.fm"
     number = rand(1..700)
-    page = ((number - 1) / 50).to_i + 1
-    links = [
-      "http://www.last.fm/user/jayteemo/library/albums?page=#{page}",
-      "http://www.last.fm/user/fredguy/library/albums?page=#{page}",
-      "http://www.last.fm/user/acashk/library/albums?page=#{page}",
-      "http://www.last.fm/user/joshualehman/library/albums?page=#{page}",
-    ]
-    message = "#{number}!\n" + links.join("\n")
+    albums = ["jayteemo", "fredguy", "acashk", "joshualehman"].map do |username|
+      album = LastFm.top_album username, number
+      if album
+        "#{username}: #{album['artist']['name']} - #{album['name']}"
+      end
+    end
+    message = "#{number}!\n" + albums.select { |a| a && !a.empty? }.join("\n")
   when "/rfi"
     # this is "roll for initiative" aka a random number generator for a game
     message = rand(1..20).to_s
