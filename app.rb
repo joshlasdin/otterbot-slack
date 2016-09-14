@@ -11,6 +11,7 @@ require "./lib/magic_8_ball"
 require "./lib/magic_gif_ball"
 require "./lib/cute_plz"
 require "./lib/last_fm"
+require "./lib/spotify"
 
 # ensures foreman doesn't buffer console output
 $stdout.sync = true
@@ -68,7 +69,8 @@ post "/" do
     albums = ["jayteemo", "fredguy", "acashk", "joshualehman"].map do |username|
       album = LastFm.top_album username, number
       if album
-        "#{username}: #{album['artist']['name']} - #{album['name']}"
+        url = Spotify.album_search album['artist']['name'], album['name']
+        "#{username}: #{album['artist']['name']} - #{album['name']} #{url}".strip
       end
     end
     message = "#{number}!\n" + albums.select { |a| a && !a.empty? }.join("\n")
