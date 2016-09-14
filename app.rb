@@ -64,7 +64,7 @@ post "/" do
   when  "/lastfmroll"
     # this is "top albums of all time from fred.fm"
     number = rand(1..700)
-    page = (number / 50).to_i + 1
+    page = ((number - 1) / 50).to_i + 1
     links = [
       "http://www.last.fm/user/jayteemo/library/albums?page=#{page}",
       "http://www.last.fm/user/fredguy/library/albums?page=#{page}",
