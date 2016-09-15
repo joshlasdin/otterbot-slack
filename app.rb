@@ -81,7 +81,7 @@ post "/" do
     track = LastFm.top_track "IndieAndSuch", number
     if track
       url = Spotify.track_search track['artist']['name'], track['name']
-      message = "#{track['artist']['name']} - #{track['name']} #{url}".strip
+      message = "#{number}: #{track['artist']['name']} - #{track['name']} #{url}".strip
     end
   when "/rfi"
     # this is "roll for initiative" aka a random number generator for a game
