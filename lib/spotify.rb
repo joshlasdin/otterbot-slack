@@ -21,4 +21,23 @@ class Spotify
 
     nil
   end
+
+  def self.track_search artist, title
+    options = {
+      q: "#{artist} #{title}",
+      type: :track,
+    }
+    response = HTTParty.get(BASE_URL + "search", query: options)
+    if response.code == 200
+      json = JSON.parse(response.body)
+      if json && json["tracks"]["items"].length > 0
+        track = json["tracks"]["items"][0]
+        return track["uri"]
+      end
+    else
+      puts "Unable to find a spotify tracks: #{response}"
+    end
+
+    nil
+  end
 end

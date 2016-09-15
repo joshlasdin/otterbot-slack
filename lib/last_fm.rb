@@ -5,7 +5,6 @@ class LastFm
 
   def self.top_album username, index
     lastfm_api_key = ENV['LAST_FM_API_KEY'].to_s
-
     raise ArgumentError.new("LAST_FM_API_KEY must be set in your ENV to search google") if lastfm_api_key.empty?
 
     options = {
@@ -29,4 +28,31 @@ class LastFm
 
     nil
   end
+
+  def self.top_track username, index
+    lastfm_api_key = ENV['LAST_FM_API_KEY'].to_s
+    raise ArgumentError.new("LAST_FM_API_KEY must be set in your ENV to search google") if lastfm_api_key.empty?
+
+    options = {
+      method: "user.gettoptracks",
+      user: username,
+      period: "overall",
+      limit: 1,
+      page: index,
+      format: :json,
+      api_key: lastfm_api_key
+    }
+    response = HTTParty.get(BASE_URL, query: options)
+    if response.code == 200
+      json = JSON.parse(response.body)
+      if json && json["toptracks"] && json["toptracks"]["track"].length > 0
+        return json["toptracks"]["track"][0]
+      end
+    else
+      puts "Unable to find a users last fm tracks: #{response}"
+    end
+
+    nil
+  end
+
 end

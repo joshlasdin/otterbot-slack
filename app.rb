@@ -65,7 +65,6 @@ post "/" do
     decision = MagicGifBall.shake
     message = "Magic Gif Ball says: #{decision}"
   when  "/lastfmroll"
-    # this is "top albums of all time from fred.fm"
     number = rand(1..700)
     albums = ["jayteemo", "fredguy", "acashk", "joshualehman"].map do |username|
       album = LastFm.top_album username, number
@@ -77,6 +76,13 @@ post "/" do
     end
     message = ":game_die:#{emojify_number(number)}:heavy_exclamation_mark:\n" + albums.select { |a| a && !a.empty? }.join("\n")
     reply_options[:unfurl_media] = false
+  when  "/throwback"
+    number = rand(1..500)
+    track = LastFm.top_track "IndieAndSuch", number
+    if track
+      url = Spotify.track_search track['artist']['name'], track['name']
+      message = "#{track['artist']['name']} - #{track['name']} #{url}".strip
+    end
   when "/rfi"
     # this is "roll for initiative" aka a random number generator for a game
     message = rand(1..20).to_s
