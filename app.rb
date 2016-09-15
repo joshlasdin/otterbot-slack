@@ -75,8 +75,7 @@ post "/" do
         "#{username}: #{album['artist']['name']} - #{album['name']}#{link}"
       end
     end
-    message = "#{number}!\n" + albums.select { |a| a && !a.empty? }.join("\n")
-    reply_options[:unfurl_links] = false
+    message = ":game_die:#{emojify_number(number)}:heavy_exclamation_mark:\n" + albums.select { |a| a && !a.empty? }.join("\n")
     reply_options[:unfurl_media] = false
   when "/rfi"
     # this is "roll for initiative" aka a random number generator for a game
@@ -100,6 +99,23 @@ end
 def formatted_response username, command, text, message
   text = " #{text}" if text && text.length > 0
   "#{username} #{command}#{text}\n#{message}"
+end
+
+DIGIT_MAPPING = {
+  0 => "zero",
+  1 => "one",
+  2 => "two",
+  3 => "three",
+  4 => "four",
+  5 => "five",
+  6 => "six",
+  7 => "seven",
+  8 => "eight",
+  9 => "nine"
+}
+
+def emojify_number value
+  value.to_i.to_s.each_char.map { |digit|  ":#{DIGIT_MAPPING[digit.to_i]}:" }.join("")
 end
 
 """
