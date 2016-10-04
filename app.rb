@@ -65,7 +65,7 @@ post "/" do
     decision = MagicGifBall.shake
     message = "Magic Gif Ball says: #{decision}"
   when  "/lastfmroll"
-    number = rand(1..700)
+    number = rand(1..1500)
     albums = ["jayteemo", "fredguy", "acashk", "joshualehman"].map do |username|
       album = LastFm.top_album username, number
       if album
