@@ -19,7 +19,10 @@ class CutePlz
       "https://s-media-cache-ak0.pinimg.com/736x/27/df/cc/27dfcc17a8cefe56c99277d63be0d815.jpg",
       "http://static.parade.com/wp-content/uploads/2013/12/pizza-cat.jpg",
       "https://i.ytimg.com/vi/FGrnvP5qWd0/maxresdefault.jpg",
-      "http://1.bp.blogspot.com/-cxl-l-fLICw/UT3FuiM7DVI/AAAAAAAABeA/7OPNiNoCNxM/s1600/cute-cats-pictures-1-2-07-3-4-5-6-2-3-1-2-3-9-8.png"
+      "http://1.bp.blogspot.com/-cxl-l-fLICw/UT3FuiM7DVI/AAAAAAAABeA/7OPNiNoCNxM/s1600/cute-cats-pictures-1-2-07-3-4-5-6-2-3-1-2-3-9-8.png",
+      "https://i.reddituploads.com/6e25bdd3ffed48ad8c117cb72175f1e5?fit=max&h=1536&w=1536&s=b7afd209644a8f21f56f04fae00ea46a",
+      "http://i.imgur.com/e5C1Upl.jpg",
+      "https://i.redditmedia.com/1Ej9zSGa5ZQJeX9RIvIHgil2dH2A5Cv5wXQeWRewZUw.jpg?w=1024&s=0dc0aa8273b2e84ed5f2a7f4e72ed1f0",
     ],
     "dog" => [
       "http://31.media.tumblr.com/tumblr_m8z3wltiAE1rajomio1_250.gif",
@@ -41,7 +44,11 @@ class CutePlz
       "http://www.allpetsjournal.com/wp-content/uploads/2015/08/cute-dog-6-camelcitydispatch.jpg",
       "https://s-media-cache-ak0.pinimg.com/736x/c9/5e/58/c95e58547623ab95a93b49997c1ce4e3.jpg",
       "http://content.tailster.com/blog/wp-content/uploads/2014/06/animals-cute-dog-Favim.com-458661_large.jpg",
-      "http://images6.fanpop.com/image/photos/33500000/Cute-Dog-dogs-33531442-450-475.jpg"
+      "http://images6.fanpop.com/image/photos/33500000/Cute-Dog-dogs-33531442-450-475.jpg",
+      "https://i.reddituploads.com/d41888db1f154df396ccffcef2ada3e7?fit=max&h=1536&w=1536&s=117054d16674cd61c4d2252a48781cd3",
+      "http://i.imgur.com/hjGyn2m.png",
+      "https://i.imgur.com/fEwtbZq.gifv",
+      "http://i.imgur.com/IiZq1i1.gifv",
     ],
   }
 
