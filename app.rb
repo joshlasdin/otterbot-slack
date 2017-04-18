@@ -66,7 +66,7 @@ post "/" do
     message = "Magic Gif Ball says: #{decision}"
   when  "/lastfmroll"
     number = rand(1..1500)
-    albums = ["jayteemo", "fredguy", "acashk", "joshualehman", "jolbyandfriends"].map do |username|
+    albums = ["jayteemo", "fredguy", "acashk", "joshualehman", "jolbyandfriends", "dan_hazard"].map do |username|
       album = LastFm.top_album username, number
       if album
         url = Spotify.album_search album['artist']['name'], album['name']
