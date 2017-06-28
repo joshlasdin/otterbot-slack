@@ -4,7 +4,7 @@ class Spotify
   def self.album_search artist, title
     albums = RSpotify::Album.search("#{artist} #{title}")
     if albums.any?
-      album[0].uri
+      albums[0].uri
     else
       puts "Unable to find a spotify albums for: #{artist} #{title}"
       nil
@@ -12,9 +12,9 @@ class Spotify
   end
 
   def self.track_search artist, title
-    albums = RSpotify::Track.search("#{artist} #{title}")
-    if albums.any?
-      album[0].uri
+    tracks = RSpotify::Track.search("#{artist} #{title}")
+    if tracks.any?
+      tracks[0].uri
     else
       puts "Unable to find a spotify track for: #{artist} #{title}"
       nil
