@@ -1,43 +1,27 @@
-require 'httparty'
+require 'rspotify'
 
 class Spotify
-  BASE_URL = "https://api.spotify.com/v1/"
-
   def self.album_search artist, title
-    options = {
-      q: "#{artist} #{title}",
-      type: :album,
-    }
-    response = HTTParty.get(BASE_URL + "search", query: options)
-    if response.code == 200
-      json = JSON.parse(response.body)
-      if json && json["albums"]["items"].length > 0
-        album = json["albums"]["items"][0]
-        return album["uri"]
-      end
+    albums = RSpotify::Album.search("#{artist} #{title}")
+    if albums.any?
+      album[0].uri
     else
-      puts "Unable to find a spotify albums: #{response}"
+      puts "Unable to find a spotify albums for: #{artist} #{title}"
+      nil
     end
-
-    nil
   end
 
   def self.track_search artist, title
-    options = {
-      q: "#{artist} #{title}",
-      type: :track,
-    }
-    response = HTTParty.get(BASE_URL + "search", query: options)
-    if response.code == 200
-      json = JSON.parse(response.body)
-      if json && json["tracks"]["items"].length > 0
-        track = json["tracks"]["items"][0]
-        return track["uri"]
-      end
+    albums = RSpotify::Track.search("#{artist} #{title}")
+    if albums.any?
+      album[0].uri
     else
-      puts "Unable to find a spotify tracks: #{response}"
+      puts "Unable to find a spotify track for: #{artist} #{title}"
+      nil
     end
+  end
 
-    nil
+  def self.authenticate!
+    RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"])
   end
 end

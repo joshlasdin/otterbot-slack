@@ -16,6 +16,8 @@ require "./lib/spotify"
 # ensures foreman doesn't buffer console output
 $stdout.sync = true
 
+Spotify.authenticate!
+
 get "/" do
   send_file 'public/index.html'
 end
