@@ -1,0 +1,7 @@
+=== otterbot-slack Config Vars
+CHANNEL:     #test
+LANG:        en_US.UTF-8
+RACK_ENV:    production
+TOKEN:       GmhKKmZxVWVjTOWwdGxjGQjC
+WEBHOOK_URL: https://hooks.slack.com/services/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
+LAST_FM_API_KEY: fecabc1498a66a28ac45ee8791dd66da
