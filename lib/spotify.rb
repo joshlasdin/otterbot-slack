@@ -4,9 +4,9 @@ class Spotify
   def self.album_search artist, title
     album = RSpotify::Album.search("#{artist} #{title}").first
     if album
-      albums[0].uri
+      album[0].uri
     else
-      puts "Unable to find a spotify albums for: #{artist} #{title}"
+      puts "Unable to find a spotify album for: #{artist} #{title}"
       nil
     end
   end
@@ -16,7 +16,7 @@ class Spotify
     if album
       "https://open.spotify.com/album/#{album.id}"
     else
-      puts "Unable to find a spotify albums for: #{artist} #{title}"
+      puts "Unable to find a spotify album for: #{artist} #{title}"
       nil
     end
   end
