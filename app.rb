@@ -31,7 +31,7 @@ get "/roller" do
   LAST_FM_USERS.shuffle.each do |username|
     album = LastFm.top_album username, number
     if album
-      url = Spotify.album_search album['artist']['name'], album['name']
+      url = Spotify.album_url album['artist']['name'], album['name']
 
       break if url
     end
