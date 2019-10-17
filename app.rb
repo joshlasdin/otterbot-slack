@@ -18,8 +18,26 @@ $stdout.sync = true
 
 Spotify.authenticate!
 
+LAST_FM_USERS = ["jayteemo", "fredguy", "acashk", "joshualehman", "jolbyandfriends", "dan_hazard", "stevenkasprzyk"]
+
 get "/" do
   send_file 'public/index.html'
+end
+
+get "/roller" do
+  number = rand(1..2000)
+
+  url = ""
+  LAST_FM_USERS.shuffle.each do |username|
+    album = LastFm.top_album username, number
+    if album
+      url = Spotify.album_search album['artist']['name'], album['name']
+
+      break if url
+    end
+  end
+
+  url
 end
 
 post "/" do
@@ -68,7 +86,7 @@ post "/" do
     message = "Magic Gif Ball says: #{decision}"
   when  "/lastfmroll"
     number = rand(1..5000)
-    albums = ["jayteemo", "fredguy", "acashk", "joshualehman", "jolbyandfriends", "dan_hazard", "stevenkasprzyk"].map do |username|
+    albums = LAST_FM_USERS.map do |username|
       album = LastFm.top_album username, number
       if album
         url = Spotify.album_search album['artist']['name'], album['name']
