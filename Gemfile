@@ -17,5 +17,5 @@ group :development do
 end
 
 group :production do
-  gem 'puma', '~> 3.9.1'
+  gem 'puma', '~> 3.12.2'
 end

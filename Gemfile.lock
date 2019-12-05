@@ -42,7 +42,7 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    puma (3.9.1)
+    puma (3.12.2)
     rack (2.0.7)
     rack-protection (2.0.7)
       rack
@@ -82,7 +82,7 @@ DEPENDENCIES
   foreman (~> 0.84.0)
   httparty (~> 0.15.5)
   pry
-  puma (~> 3.9.1)
+  puma (~> 3.12.2)
   rake (~> 12.0.0)
   rb-fsevent
   rb-readline
