@@ -1,12 +1,12 @@
 source 'http://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.5.5'
 
-gem 'rake', '~> 12.0.0'
-gem 'sinatra', '~> 2.0.0'
-gem 'foreman', '~> 0.84.0'
-gem 'httparty', '~> 0.15.5'
-gem 'rspotify', '~> 1.22.0'
+gem 'rake', '~> 12.0'
+gem 'sinatra', '~> 2.0'
+gem 'foreman', '~> 0.84'
+gem 'httparty', '~> 0.15'
+gem 'rspotify', '~> 1.22'
 
 group :development do
   gem 'thin'
@@ -17,5 +17,5 @@ group :development do
 end
 
 group :production do
-  gem 'puma', '~> 3.9.1'
+  gem 'puma', '~> 3.9'
 end
