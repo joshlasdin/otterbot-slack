@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.5.5'
+ruby '2.5.7'
 
 gem 'rake', '~> 12.0'
 gem 'sinatra', '~> 2.0'
