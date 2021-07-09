@@ -18,7 +18,7 @@ $stdout.sync = true
 
 Spotify.authenticate!
 
-LAST_FM_USERS = ["jayteemo", "fredguy", "acashk", "joshualehman",  "dan_hazard", "stevenkasprzyk"]
+LAST_FM_USERS = ["jayteemo", "fredguy", "acashk", "joshualehman",  "dan_hazard", "stevenkasprzyk", "seasides"]
 
 get "/" do
   send_file 'public/index.html'
