@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 ruby '2.5.7'
 
 gem 'rake', '~> 12.0'
-gem 'sinatra', '~> 2.0'
+gem 'sinatra', '~> 2.2'
 gem 'foreman', '~> 0.84'
 gem 'httparty', '~> 0.15'
 gem 'rspotify', '~> 1.22'
